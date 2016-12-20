@@ -4,4 +4,4 @@ Description: Orchard Theme Machine is a flexible multi-zone theme that provides 
 Version: 1.10.1
 Tags: Awesome
 Website: http://orchardproject.net
-Zones: Header, Navigation, Featured, BeforeMain, AsideFirst, Messages, BeforeContent, Content, AfterContent, AsideSecond, AfterMain, TripelFirst, TripelSecond, TripelThird, FooterQuadFirst, FooterQuadSecond, FooterQuadThird, FooterQuadFourth, Footer
+Zones: Header, Navigation, Featured, BeforeMain, Messages, BeforeContent, Content, AfterContent, DoubleFirst, DoubleSecond, Footer

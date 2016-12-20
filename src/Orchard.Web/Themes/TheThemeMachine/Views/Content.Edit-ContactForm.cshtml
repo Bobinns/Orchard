@@ -1,0 +1,102 @@
+﻿@using (Script.Foot())
+{
+
+
+<script src="~/Themes/TheThemeMachine/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Themes/TheThemeMachine/Scripts/additional-methods.min.js" type="text/javascript"></script>
+<script src="~/Themes/TheThemeMachine/Scripts/jquery.tooltipster.min.js" type="text/javascript"></script>
+<link href="~/Themes/TheThemeMachine/Styles/tooltipster.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Themes/TheThemeMachine/Styles/toastr.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Themes/TheThemeMachine/Scripts/toastr.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //toastr.info('Are you the 6 fingered man?')
+        $('#cform input').tooltipster({
+            trigger: 'custom', // default is 'hover' which is no good here
+            onlyOne: false,    // allow multiple tips to be open at a time
+            position: 'right'  // display the tips to the right of the element
+        });
+
+        $('.tarea').tooltipster({
+            trigger: 'custom', // default is 'hover' which is no good here
+            onlyOne: false,    // allow multiple tips to be open at a time
+            position: 'right'  // display the tips to the right of the element
+        });
+
+        jQuery.validator.addMethod('phoneUK', function(phone_number, element) {
+              return this.optional(element) || phone_number.length > 9 &&
+              phone_number.match(/^(\(?(0|\+44)[1-9]{1}\d{1,4}?\)?\s?\d{3,4}\s?\d{3,4})$/);
+              }, 'Please specify a valid phone number'
+            );
+
+    $('#cform').validate({ // initialize the plugin
+        errorPlacement: function (error, element) {
+            $(element).tooltipster('update', $(error).text());
+            $(element).tooltipster('show');
+        },
+        success: function (label, element) {
+            $(element).tooltipster('hide');
+        },
+        rules: {
+            "ContactForm.Email.Value": {
+                require_from_group: [1, '.mygroup']
+            },
+            "ContactForm.Phone.Value": {
+                require_from_group: [1, '.mygroup'],
+                phoneUK: true
+            }
+        },
+        messages: {
+            "ContactForm.Message.Text": "A message is reqiured",
+        }
+    });
+
+    $('.zone-messages .message').css('display', 'none');
+    $('.validation-summary-errors ul').css({ "list-style-type": "none", "background-color": "#D8000C", "color":"white", "font-weight":"bold" });
+
+    var messageElement;
+    $('.zone-messages .message').each(function () {
+        messageElement = $(this);
+        toastr.options.positionClass ="toast-bottom-center";
+        if (messageElement.hasClass('message-Information')) {
+            toastr.success(messageElement.html());
+        } else if (messageElement.hasClass('message-Warning')) {
+            toastr.warning(messageElement.html());
+        } else if (messageElement.hasClass('message-Error')) {
+            toastr.error(messageElement.html());
+        }
+    });
+
+    });
+</script>
+}
+
+<div class="edit-item">
+    <div class="edit-item-primary">
+        @if (Model.Content != null)
+        {
+        <div class="edit-item-content">
+            @Display(Model.Content)
+        </div>
+        }
+    </div>
+    <div class="edit-item-secondary group">
+        @if (Model.Actions != null)
+        {
+        <div class="edit-item-actions">
+            @Display(Model.Actions)
+        </div>
+        }
+        @if (Model.Sidebar != null)
+        {
+        <div class="edit-item-sidebar group">
+            @Display(Model.Sidebar)
+        </div>
+        }
+    </div>
+</div>
+
+@if (!String.IsNullOrWhiteSpace(Request.QueryString["returnUrl"]))
+{
+    @Html.Hidden("returnUrl", Request.QueryString["returnUrl"])
+}

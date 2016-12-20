@@ -1,0 +1,21 @@
+﻿@using FontAweSomeElements.Elements
+@using Orchard.Layouts.Helpers
+@{
+    var tagBuilder = TagBuilderExtensions.CreateElementTagBuilder(Model);
+    tagBuilder.InnerHtml = Model.ProcessedContent;
+
+
+    var element = (FontAweSomeElement)Model.Element;
+}
+
+<div class="testimonial">
+    <div class="testimonial-icon bg-secondary">
+        @if (!String.IsNullOrWhiteSpace(element.FontUrl.ToString()))
+        {
+            <i class="fa fa-@element.FontUrl fa-lg"></i>            
+        }
+    </div>
+    <div class="testimonial-content">
+        @Html.Raw(element.Content)
+    </div>
+</div>

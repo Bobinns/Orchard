@@ -118,6 +118,7 @@
     <Compile Include="ViewModels\ThemesIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\orchard.ico" />
     <Content Include="Styles\images\menu.themes.png" />
     <Content Include="Styles\images\new.gif" />

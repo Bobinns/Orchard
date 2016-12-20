@@ -1,0 +1,117 @@
+﻿@using Derm.ImageSliderGallery.ViewModels
+@using (Script.Foot())
+{
+    <script>
+        $('.carousel').carousel({
+            interval: 1000 * 10
+        });
+    </script>
+}
+@{
+
+    Style.Require("Animate");
+    Script.Require("Bootstrap");
+
+    var items = (IEnumerable<ImageSliderGalleryWidgetViewModel>)Model.SlideItems;
+    var i = 0;
+}
+
+<div class="masthead">
+    <!-- starts carousel -->
+    <div id="masthead-carousel" class="carousel slide carousel-fade masthead-carousel bhag">
+        <div class="carousel-inner">
+            @foreach (var item in items)
+            {
+                if (i == 0)
+                {
+                    @Html.Raw("<div class='item active'>")
+                }
+                else
+                {
+                     @Html.Raw("<div class='item'>")
+                }
+                <br class="xs-30 sm-60">
+                <div class="container">
+                    <div class="row">
+            @if (@item.SliderType == "Bounce In")
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated bounceInRight'")
+            }
+            else if (@item.SliderType == "Bounce Out")
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated bounceOutRight'")
+            }
+            else if (@item.SliderType == "Rotate In Down")
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated rotateInDownRight'")
+            }
+            else if (@item.SliderType == "Rotate In Up")
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated rotateInUpRight'")
+            }
+            else if (@item.SliderType == "Zoom In")
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated zoomInRight'")
+            }
+            else if (@item.SliderType == "Slide In")
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated slideInRight'")
+            }
+            else if (@item.SliderType == "Hinge")
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated hinge'")
+            }
+            else
+            {
+                @Html.Raw("<div class='col-md-6 masthead-text animated rotateInDownRight'")
+            }
+
+            @if (!String.IsNullOrWhiteSpace(@item.HeadTitle1))
+            {
+                <h4 class="masthead-title">@item.HeadTitle1</h4>
+            }
+            @if (!String.IsNullOrWhiteSpace(@item.HeadTitle2))
+            {
+                <h5 class="masthead-title">@item.HeadTitle2 </h5>
+            }
+            @if (!String.IsNullOrWhiteSpace(@item.HeadTitle3))
+            {
+                <h6 class="masthead-title">@item.HeadTitle3 </h6>
+            }
+            <br>
+            <div class="masthead-actions">
+                <p>@Html.Raw(item.TextBody)</p>
+                @if (!String.IsNullOrWhiteSpace(@item.LinkUrl))
+                {
+                    <a href="@item.LinkUrl" title="go to page" class="btn btn-success">Read More</a>
+                }                
+            </div>
+        </div>
+        <br class="xs-30 md-0">
+        <div class="col-md-6 masthead-img animated rotateInDownLeft">
+            @if (!String.IsNullOrWhiteSpace(@item.ForeGroundImagePath))
+            {
+                <img src="@item.ForeGroundImagePath" alt="@item.Title" class="img-responsive">
+            }
+        </div>
+    </div>
+                @Html.Raw("</div>")
+            @Html.Raw("</div>")
+                i++;
+            }
+          </div>
+
+    <!-- /.carousel-inner -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-2 col-xs-offset-10 col-md-7 col-md-offset-5 pull-right">
+                        <div class="carousel-controls">
+                            <a class="carousel-control left" href="#masthead-carousel" data-slide="prev">‹</a>
+                            <a class="carousel-control right" href="#masthead-carousel" data-slide="next">›</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel nav -->
+        </div> <!-- /.masthead-carousel -->
+</div>

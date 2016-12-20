@@ -1,0 +1,61 @@
+﻿@using Orchard.Localization
+@using Orchard.Mvc.Html;
+@using Orchard.UI.Resources;
+@{
+    RegisterLink(new LinkEntry {Type = "image/x-icon", Rel = "shortcut icon", Href = Url.Content("~/modules/orchard.themes/Content/favicon.ico")});
+    Script.Require("Html5Shiv").UseCondition("lt IE 9").AtHead();
+
+    string title = Convert.ToString(Model.Title);
+    string siteName = Convert.ToString(WorkContext.CurrentSite.SiteName);
+    bool isRtl = WorkContext.CurrentCultureInfo().TextInfo.IsRightToLeft;
+    Html.AddPageClassNames("dir-" + (isRtl ? "rtl" : "ltr"));
+}
+<!DOCTYPE html> 
+<html lang="@WorkContext.CurrentCulture" class="static @Html.ClassForPage()" dir="@(isRtl?"rtl":"ltr")"> 
+<head> 
+    <meta charset="utf-8" />
+    <title>@Html.Title(title, siteName)</title> 
+    @Display(Model.Head)
+    <script>(function(d){d.className="dyn"+d.className.substring(6,d.className.length);})(document.documentElement);</script> 
+    <script>window.isRTL = @(isRtl.ToString().ToLowerInvariant());</script>
+</head> 
+<body>
+@* Layout (template) is in the Body zone @ the default position (nothing, zero, zilch) *@
+@Display(Model.Body)
+@Display(Model.Tail)
+
+@*<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>The "Field" will&nbsp;<span data-dobid="hdw">temporarily</span> close for a couple of months from the <strong>12th December. </strong></p>
+                <p>The building is being closed in order to perform some essential work.</p>
+                <p>In the meantime, <b>HAGL</b> will meet at the offices of Chisel/Three Boroughs Housing Co-operative.</p>
+                <p>The schedule for these meetings will run as follows</p>
+                <p><strong>Mon 28 Nov 10am - 12</strong></p>
+                <p><strong>Tue 13 Dec 7-9 pm</strong></p>
+                <p>Monday meeting in late Dec...(Boxing Day)</p>
+                <p><strong>Tue 10 Jan 7-9 pm</strong></p>
+                <p><strong>Mon 23 Jan 10am - 12</strong></p>
+                <p><strong>Tue 14 Feb 7-9 pm (Valentine&rsquo;s Day&hellip;)</strong></p>
+                <p><strong>The location of the temporary venue - 188 Brockley Road, Brockley, SE4 2RL</strong></p>
+                <p><a href="https://www.google.com/maps/place/188+Brockley+Road,+Brockley,+SE4+2RL/" title="venue location" target="_blank"><strong> <img alt="" src="/OrchardLocal/Media/Default/images/temp-location.png" width="600" height="300" /> </strong></a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("img").addClass("img-responsive");
+        $("#myModal").modal('show');
+});
+    </script>
+</body>
+</html>

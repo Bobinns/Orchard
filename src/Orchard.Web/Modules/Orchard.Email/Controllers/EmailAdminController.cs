@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Hosting;
 using System.Web.Mvc;
 using Orchard.ContentManagement;
 using Orchard.Email.Models;
@@ -53,7 +52,11 @@ namespace Orchard.Email.Controllers {
                 else {
                     _smtpChannel.Process(new Dictionary<string, object> {
                         {"Recipients", testSettings.To},
-                        {"Subject", T("Orchard CMS - SMTP settings test email").Text}
+                        {"Subject", testSettings.Subject},
+                        {"Body", testSettings.Body},
+                        {"ReplyTo", testSettings.ReplyTo},
+                        {"Bcc", testSettings.Bcc},
+                        {"CC", testSettings.Cc}
                     });
                 }
 
@@ -61,10 +64,10 @@ namespace Orchard.Email.Controllers {
                     return Json(new { error = fakeLogger.Message });
                 }
 
-                return Json(new { status = T("Message sent.").Text });
+                return Json(new {status = T("Message sent.").Text});
             }
             catch (Exception e) {
-                return Json(new { error = e.Message });
+                return Json(new {error = e.Message});
             }
             finally {
                 var smtpChannelComponent = _smtpChannel as Component;
@@ -91,6 +94,7 @@ namespace Orchard.Email.Controllers {
 
         public class TestSmtpSettings {
             public string From { get; set; }
+            public string ReplyTo { get; set; }
             public string Host { get; set; }
             public int Port { get; set; }
             public bool EnableSsl { get; set; }
@@ -99,6 +103,10 @@ namespace Orchard.Email.Controllers {
             public string UserName { get; set; }
             public string Password { get; set; }
             public string To { get; set; }
+            public string Cc { get; set; }
+            public string Bcc { get; set; }
+            public string Subject { get; set; }
+            public string Body { get; set; }
         }
     }
 }

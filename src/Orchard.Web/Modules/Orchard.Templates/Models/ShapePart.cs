@@ -16,16 +16,5 @@ namespace Orchard.Templates.Models {
             get { return this.Retrieve(x => x.Template); }
             set { this.Store(x => x.Template, value); }
         }
-
-        public RenderingMode RenderingMode {
-            get { return this.Retrieve(x => x.RenderingMode); }
-            set { this.Store(x => x.RenderingMode, value); }
-        }
-    }
-
-    public enum RenderingMode {
-        FrontEndAndAdmin,
-        FrontEnd,
-        Admin
     }
 }

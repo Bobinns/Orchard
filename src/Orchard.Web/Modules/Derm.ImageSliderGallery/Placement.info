@@ -1,0 +1,8 @@
+﻿<Placement>
+  <Place Parts_ImageSliderGallery_Edit="Content:5"/>
+  <Place Parts_ImageSliderGallery="Content:1"/>
+<Place Parts_ImageSliderGalleryWidget_Edit="Content:5"/>
+  <Place Parts_ImageSliderGalleryWidget="Content:1"/>
+  <Place Parts_ImageSliderGalleryGroup_Edit="Content:5"/>
+  <Place Parts_ImageSliderGalleryGroup="Content:1"/>
+</Placement>

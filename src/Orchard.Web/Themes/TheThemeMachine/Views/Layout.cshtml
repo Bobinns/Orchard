@@ -11,9 +11,17 @@
     ***************************************************************/
 
     SetMeta(httpEquiv: "X-UA-Compatible", content: "IE=edge,chrome=1");
-    Style.Include("//fonts.googleapis.com/css?family=Lobster&subset=latin");
-    Style.Include("default-grid.css");
-    Style.Include("site.css");
+    //Style.Include("//fonts.googleapis.com/css?family=Lobster&subset=latin");
+    //Style.Include("default-grid.css");
+    //Style.Include("site.css");
+    Style.Include("css.min.css");
+    Style.Include("font-awesome.min.css");
+    Style.Require("Bootstrap");
+    Script.Require("Bootstrap");
+    //Style.Require("BootstrapTheme");
+    Style.Include("main.min.css");
+    //Style.Include("animate.css");
+    //Style.Include("hagl.css");
 
     /* Some useful shortcuts or settings
     ***************************************************************/
@@ -24,28 +32,31 @@
     ***************************************************************/
 
     //Add classes to the wrapper div to toggle aside widget zones on and off
-    var asideClass = CalcuClassify(new [] {"AsideFirst", "AsideSecond"}, "aside-"); // for aside-1, aside-2 or aside-12 if any of the aside zones are filled
-    if (HasText(asideClass)) {
+    var asideClass = CalcuClassify(new[] { "AsideFirst", "AsideSecond" }, "aside-"); // for aside-1, aside-2 or aside-12 if any of the aside zones are filled
+    if (HasText(asideClass))
+    {
         Model.Classes.Add(asideClass);
     }
 
     //Add classes to the wrapper div to toggle tripel widget zones on and off
-    var tripelClass = CalcuClassify(new [] {"TripelFirst", "TripelSecond", "TripelThird"}, "tripel-"); // for tripel-1, triple-2, etc. if any of the tripel zones are filled
-    if (HasText(tripelClass)) {
+    var tripelClass = CalcuClassify(new[] { "TripelFirst", "TripelSecond", "TripelThird" }, "tripel-"); // for tripel-1, triple-2, etc. if any of the tripel zones are filled
+    if (HasText(tripelClass))
+    {
         Model.Classes.Add(tripelClass);
     }
 
     //Add classes to the wrapper div to toggle quad widget zones on and off
-    var footerQuadClass = CalcuClassify(new [] {"FooterQuadFirst", "FooterQuadSecond", "FooterQuadThird", "FooterQuadFourth"}, "split-"); // for quad-1, quad-2, etc. if any of the quad zones are filled
-    if (HasText(footerQuadClass)) {
+    var footerQuadClass = CalcuClassify(new[] { "FooterQuadFirst", "FooterQuadSecond", "FooterQuadThird", "FooterQuadFourth" }, "split-"); // for quad-1, quad-2, etc. if any of the quad zones are filled
+    if (HasText(footerQuadClass))
+    {
         Model.Classes.Add(footerQuadClass);
     }
 
     /* Inserting some ad hoc shapes
     ***************************************************************/
 
-    WorkContext.Layout.Header.Add(New.Branding(), "5"); // Site name and link to the home page
-    WorkContext.Layout.Footer.Add(New.BadgeOfHonor(), "5"); // Powered by Orchard
+    //WorkContext.Layout.Header.Add(New.Branding(), "5"); // Site name and link to the home page
+    //WorkContext.Layout.Footer.Add(New.BadgeOfHonor(), "5"); // Powered by Orchard
     WorkContext.Layout.Footer.Add(New.User(), "10"); // Login and dashboard links
 
     /* Last bit of code to prep the layout wrapper
@@ -53,122 +64,209 @@
 
     Model.Id = "layout-wrapper";
     var tag = Tag(Model, "div"); // using Tag so the layout div gets the classes, id and other attributes added to the Model
-}
-@tag.StartElement
-@if (Model.Header != null) {
-<header id="layout-header" class="group">
-    <div id="header">
+    var hp = WorkContext.CurrentSite.BaseUrl;
+    }
+    @tag.StartElement
+@*<header role="banner">
+    <div class="container">
+    <a class="banner-brand visible-md visible-lg" href="@hp">
+    @if (Model.Header != null)
+    {
         @Zone(Model.Header)
+    }
+    </a>
+    <div class="utility-nav">
+    <ul>
+        <li><a href="https://twitter.com/bensingermusic" title="Twitter Profile" target="_blank"><span class="icon fa fa-twitter fa-2x"></span></a></li>
+        <li><a href="https://facebook.com/bensmusicteaching" title="Facebook Page" target="_blank"><span class="icon fa fa-facebook fa-2x"></span></a></li>
+        <li><a href="https://uk.linkedin.com/pub/ben-singer/11/b93/996" title="LinkedIn Profile" target="_blank"><span class="icon fa fa-linkedin fa-2x"></span></a></li>
+    </ul>
+    <ul>
+        <li></li>
+    </ul>
     </div>
+    </div>
+
+    <div class="container">
+    <nav role="navigation" class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand visible-xs visible-sm" href="@Model.Href">
+            @if (Model.Header != null)
+            {
+                @Zone(Model.Header)
+            }
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        @if (Model.Navigation != null)
+        {
+            @Zone(Model.Navigation)
+        }
+    </div>
+    </nav>
+    </div>
+</header>*@
+
+<header class="navbar" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="@hp" class="navbar-brand navbar-brand-img">
+                <img src="@Url.Content(Html.ThemePath(WorkContext.CurrentTheme, "/Content/img/banner-logo-long4.png"))" alt="HAGL navbar logo" />
+            </a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+        </div> <!-- /.navbar-header -->
+        <nav class="collapse navbar-collapse" role="navigation">
+            @if (Model.Navigation != null)
+            {
+                @Zone(Model.Navigation)
+            }
+            <ul class="nav navbar-nav navbar-right mainnav-menu">
+                <li>
+                    <a href="https://www.facebook.com/events/1816130525272982/">
+                        <img src="@Url.Content(Html.ThemePath(WorkContext.CurrentTheme, "/Content/img/facebook.png"))" alt="HAGL Facebook icon" />                    
+                    </a></li>                
+            </ul>
+        </nav>
+    </div> <!-- /.container -->
 </header>
+
+@if (Model.BeforeMain != null)
+{
+    <div id="layout-before-main" class="group">
+        @Zone(Model.BeforeMain)
+    </div>
 }
-@if (Model.Navigation != null) {
-<div id="layout-navigation" class="group">
-    @Zone(Model.Navigation)
-</div>
-}
-@if (Model.Featured != null) {
-<div id="layout-featured" class="group">
-    @Zone(Model.Featured)
-</div>
-}
-@if (Model.BeforeMain != null) {
-<div id="layout-before-main" class="group">
-    @Zone(Model.BeforeMain)
-</div>
-}
-<div id="layout-main-container">
-<div id="layout-main" class="group">
-    @if (Model.AsideFirst != null) {
-    <aside id="aside-first" class="aside-first group">
-        @Zone(Model.AsideFirst)
-    </aside>
-    }
-    <div id="layout-content" class="group">
-        @if (Model.Messages != null) {
-        <div id="messages">
-            @Zone(Model.Messages)
-        </div>
+
+<main role="main" class="content">
+    <div class="container">
+
+        @if (Model.Messages != null)
+        {
+            <div class="container">
+                <div id="message" class="row">
+                    <div class="col-sm-12">
+                        <p><b>@Zone(Model.Messages)</b></p>
+                    </div>
+                </div>
+            </div>
         }
-        @if (Model.BeforeContent != null) {
-        <div id="before-content">
-            @Zone(Model.BeforeContent)
-        </div>
+
+        @if (Model.Content != null)
+        {
+            <div id="content" class="row">
+                @Zone(Model.Content)
+            </div>
         }
-        @* the model content for the page is in the Content zone @ the default position (nothing, zero, zilch) *@
-        @if (Model.Content != null) {
-        <div id="content" class="group">
-            @Zone(Model.Content)
-        </div>
-        }
-        @if (Model.AfterContent != null) {
-        <div id="after-content">
+    </div>
+
+
+    @if (Model.AfterContent != null)
+    {
+        <div class="container">
+        @if (Model.AfterContent != null)
+        {
             @Zone(Model.AfterContent)
-        </div>
         }
-    </div>
-    @if (Model.AsideSecond != null) {
-    <aside id="aside-second" class="aside-second">
-        @Zone(Model.AsideSecond)
-    </aside>
-    }
-</div>
-</div>
-@if (Model.AfterMain != null) {
-<div id="layout-after-main" class="group">
-    @Zone(Model.AfterMain)
-</div>
-}
-@if (Model.TripelFirst != null || Model.TripelSecond != null || Model.TripelThird != null) {
-<div id="layout-tripel-container">
-<div id="layout-tripel" class="group">@* as in beer *@
-    @if (Model.TripelFirst != null) {
-    <div id="tripel-first">
-        @Zone(Model.TripelFirst)
-    </div>
-    }
-    @if (Model.TripelSecond != null) {
-    <div id="tripel-second">
-        @Zone(Model.TripelSecond)
-    </div>
-    }
-    @if (Model.TripelThird != null) {
-    <div id="tripel-third">
-        @Zone(Model.TripelThird)
-    </div>
-    }
-</div>
-</div>
-}
-<div id="layout-footer" class="group">
-    <footer id="footer">
-        <div id="footer-quad" class="group">
-            @if (Model.FooterQuadFirst != null) {
-            <div id="footer-quad-first">
-                @Zone(Model.FooterQuadFirst)
-            </div>
-            }
-            @if (Model.FooterQuadSecond != null) {
-            <div id="footer-quad-second">
-                @Zone(Model.FooterQuadSecond)
-            </div>
-            }
-            @if (Model.FooterQuadThird != null) {
-            <div id="footer-quad-third">
-                @Zone(Model.FooterQuadThird)
-            </div>
-            }
-            @if (Model.FooterQuadFourth != null) {
-            <div id="footer-quad-fourth">
-                @Zone(Model.FooterQuadFourth)
-            </div>
-            }
         </div>
-        @if(Model.Footer != null) {
-        <div id="footer-sig" class="group">
-            @Zone(Model.Footer)
+    }
+
+@if (Model.DoubleFirst != null || Model.DoubleSecond != null)
+{
+    <div class="container">
+        <div class="row">
+
+            @if (Model.DoubleFirst != null)
+            {
+                <div id="tripel-first" class="features-item col-sm-8 col-md-8">
+                    @Zone(Model.DoubleFirst)
+                </div>
+            }
+            @if (Model.DoubleSecond != null)
+            {
+                <div id="tripel-second" class="features-item col-sm-4 col-md-4">
+                    @Zone(Model.DoubleSecond)
+                </div>
+            }            
         </div>
-        }
-    </footer>
-</div>
+    </div>
+}
+
+
+            @*@if (Model.TripelFirst != null || Model.TripelSecond != null || Model.TripelThird != null)
+            {
+                <section id="features">
+                    <div class="container">
+                        <div class="row">
+
+                            @if (Model.TripelFirst != null)
+                    {
+                                <div id="tripel-first" class="features-item col-sm-6 col-md-4">
+                                    @Zone(Model.TripelFirst)
+                                </div>
+                            }
+                            @if (Model.TripelSecond != null)
+                    {
+                                <div id="tripel-second" class="features-item col-sm-6 col-md-4">
+                                    @Zone(Model.TripelSecond)
+                                </div>
+                            }
+                            @if (Model.TripelThird != null)
+                    {
+                                <div id="tripel-third" class="features-item col-sm-6 col-md-4">
+                                    @Zone(Model.TripelThird)
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </section>
+            }*@
+</main>
+<div class="container-fluid footer">
+    <div id="layout-footer" class="group">
+        <footer id="footer">
+            <div id="footer-quad" class="group">
+                @if (Model.FooterQuadFirst != null) {
+                    <div id="footer-quad-first">
+                        @Zone(Model.FooterQuadFirst)
+                    </div>
+            }
+                @if (Model.FooterQuadSecond != null) {
+                    <div id="footer-quad-second">
+                        @Zone(Model.FooterQuadSecond)
+                    </div>
+            }
+                @if (Model.FooterQuadThird != null) {
+                    <div id="footer-quad-third">
+                        @Zone(Model.FooterQuadThird)
+                    </div>
+            }
+                @if (Model.FooterQuadFourth != null) {
+                    <div id="footer-quad-fourth">
+                        @Zone(Model.FooterQuadFourth)
+                    </div>
+            }
+            </div>                        
+        </footer>
+    </div>    
+    </div>
+@if (Model.Footer != null)
+            {
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                @Zone(Model.Footer)
+            </div>
+            <div class="col-xs-4 col-xs-offset-2"><a href="mailto:derm.finn@gmail.com" title="web dev & design" class="pull-right wd">Web development: derm.finn@gmail.com</a></div>
+        </div>
+    </div>
+}
 @tag.EndElement

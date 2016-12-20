@@ -112,7 +112,30 @@
     <Content Include="TheAdmin\Styles\images\menuOpenHover.gif" />
     <Content Include="TheAdmin\Styles\images\vinesBackgroundBottom.gif" />
     <Content Include="TheAdmin\Styles\images\menu-filter.png" />
+    <Content Include="TheThemeMachine\Content\favicon.ico" />
+    <Content Include="TheThemeMachine\Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="TheThemeMachine\Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="TheThemeMachine\Content\img\banner-logo-long2.png" />
+    <Content Include="TheThemeMachine\Content\img\banner-logo-long3.png" />
+    <Content Include="TheThemeMachine\Content\img\banner-logo-long4.png" />
+    <Content Include="TheThemeMachine\Content\img\carousel-logo.png" />
+    <Content Include="TheThemeMachine\Content\img\facebook.png" />
+    <Content Include="TheThemeMachine\Content\img\favicon.ico" />
+    <Content Include="TheThemeMachine\Content\img\favicon.png" />
+    <Content Include="TheThemeMachine\Content\img\screenshot4.png" />
+    <Content Include="TheThemeMachine\fonts\fontawesome-webfont.svg" />
+    <Content Include="TheThemeMachine\Scripts\mvpready-core.js" />
+    <Content Include="TheThemeMachine\Scripts\mvpready-helpers.js" />
+    <Content Include="TheThemeMachine\Scripts\mvpready-landing.js" />
+    <Content Include="TheThemeMachine\Styles\animate.css" />
+    <Content Include="TheThemeMachine\Styles\css.css" />
+    <Content Include="TheThemeMachine\Styles\css.min.css" />
     <Content Include="TheThemeMachine\Styles\default-grid.css" />
+    <Content Include="TheThemeMachine\Styles\font-awesome.css" />
+    <Content Include="TheThemeMachine\Styles\font-awesome.min.css" />
+    <Content Include="TheThemeMachine\Styles\hagl.css" />
+    <Content Include="TheThemeMachine\Styles\main.css" />
+    <Content Include="TheThemeMachine\Styles\main.min.css" />
     <Content Include="TheThemeMachine\Styles\Site.css" />
     <Content Include="TheThemeMachine\Theme.png" />
     <Content Include="TheThemeMachine\Theme.txt" />
@@ -206,6 +229,53 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Views\Elements\Column.cshtml" />
+    <Content Include="TheThemeMachine\Views\Elements\Grid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Views\Parts.Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Content\fonts\.htaccess" />
+    <Content Include="TheThemeMachine\Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="TheThemeMachine\Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="TheThemeMachine\Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="TheThemeMachine\Content\fonts\FontAwesome.otf" />
+    <Content Include="TheThemeMachine\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="TheThemeMachine\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="TheThemeMachine\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="TheThemeMachine\Content\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Views\Document.cshtml" />
+    <Content Include="TheThemeMachine\Views\Menu.cshtml" />
+    <Content Include="TheThemeMachine\Views\MenuItem.cshtml" />
+    <Content Include="TheThemeMachine\Views\MenuItemLink.cshtml" />
+    <Content Include="TheThemeMachine\Views\MenuItemLinkdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Views\Body.Editor-Textarea.cshtml" />
+    <Content Include="TheThemeMachine\Views\Content.Edit-ContactForm.cshtml" />
+    <Content Include="TheThemeMachine\Views\Content.Edit-SubscribeForm.cshtml" />
+    <Content Include="TheThemeMachine\Views\EditorTemplate-ContactForm-Email.cshtml" />
+    <Content Include="TheThemeMachine\Views\EditorTemplate-ContactForm-Phone.cshtml" />
+    <Content Include="TheThemeMachine\Views\EditorTemplate-SubscribeForm-Email.cshtml" />
+    <Content Include="TheThemeMachine\Views\EditorTemplate-SubscribeForm-Name.cshtml" />
+    <Content Include="TheThemeMachine\Views\EditorTemplate-SubscribeForm-Phone.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\fonts\fontawesome-webfont.eot" />
+    <Content Include="TheThemeMachine\fonts\fontawesome-webfont.ttf" />
+    <Content Include="TheThemeMachine\fonts\fontawesome-webfont.woff" />
+    <Content Include="TheThemeMachine\fonts\fontawesome-webfont.woff2" />
+    <Content Include="TheThemeMachine\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\fonts\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

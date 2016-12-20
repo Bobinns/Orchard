@@ -52,7 +52,6 @@ namespace Orchard.Scripting.CSharp.Services {
 
             Engine.Run("using System;");
             Engine.Run("using System.Collections.Generic;");
-            Engine.Run("using System.Linq;");
             Engine.Run("var dictionary = new Dictionary<string, dynamic>();");
             Dictionary = Engine.Evaluate("dictionary") as IDictionary<string, dynamic>;
         }

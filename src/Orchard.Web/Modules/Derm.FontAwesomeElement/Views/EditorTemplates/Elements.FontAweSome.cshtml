@@ -1,0 +1,19 @@
+﻿@model FontAweSomeElements.ViewModels.FontAweSomeViewModel
+
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.Content, T("Content"))
+        @Display.Body_Editor(PropertyName: "Content", Text: Model.Content, EditorFlavor: "html")
+        
+        @*@Html.TextAreaFor(m => m.Content)*@
+    </div>
+    @*<div>
+        @Html.LabelFor(m => m.FontBodyText, T("Enter optional Url Link"))
+        @Html.TextBoxFor(m => m.FontBodyText)
+    </div>*@
+    <div style="padding-top:1em;">
+        @Html.LabelFor(m => m.FontUrl, T("FontAwesome Icon name"))
+        @Html.TextBoxFor(m => m.FontUrl)
+        <p>visit http://fontawesome.io/icons/ - enter icon name i.e. user </p>
+    </div>
+</fieldset>

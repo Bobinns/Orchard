@@ -15,15 +15,19 @@
     var submitButtonText = String.IsNullOrEmpty(Model.ContentItem.CustomFormPart.SubmitButtonText) ? T("Submit").Text : Model.ContentItem.CustomFormPart.SubmitButtonText;
 }
 
-@Display(New.Parts_Title().Title(displayText))
+<div class="col-xs-9">
 
-@using (Html.BeginFormAntiForgeryPost(returnUrl)) {
-    @Html.ValidationSummary()
-    // Model is a Shape, calling Display() so that it is rendered using the most specific template for its Shape type
-    @Display(Model)
+    @Display(New.Parts_Title().Title(displayText))
 
-    <fieldset class="submit-button">
-        <button type="submit" name="submit.Save" value="submit.Save">@submitButtonText</button>
-    </fieldset>
-}
+    @using (Html.BeginFormAntiForgeryPost(returnUrl, FormMethod.Post, new { role = "form", id = "cform" }))
+    {
+        @Html.ValidationSummary()
+        // Model is a Shape, calling Display() so that it is rendered using the most specific template for its Shape type
+        @Display(Model)
+
+        <div class="form-group">
+            <button type="submit" name="submit.Save" value="submit.Save" class="btn btn-default" style="margin-top:1em;">@T("Submit")</button>
+        </div>
+    }
+</div>
 

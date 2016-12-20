@@ -1,0 +1,9 @@
+﻿@model Derm.ImageSliderGallery.ViewModels.ImageSliderGalleryWidgetEditViewModel
+
+<div>@T("Showing Items") : @Html.TextBoxFor(i => i.Count, new { type = "number", min = "1", max = "255", required = "required" }) @T("count")</div>
+<div>
+    @T("Slider Group") : @Html.DropDownListFor(i => Model.GroupId, Model.Groups)
+</div>
+@*<div>
+    @T("Slider Type") : @Html.DropDownListFor(i => Model.SliderType, Model.SliderTypes)
+</div>*@

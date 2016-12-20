@@ -12,7 +12,6 @@ using Orchard.MediaLibrary.Factories;
 using Orchard.MediaLibrary.Models;
 using Orchard.Core.Title.Models;
 using Orchard.Validation;
-using Orchard.MediaLibrary.Providers;
 
 namespace Orchard.MediaLibrary.Services {
     public class MediaLibraryService : IMediaLibraryService {
@@ -20,20 +19,18 @@ namespace Orchard.MediaLibrary.Services {
         private readonly IMimeTypeProvider _mimeTypeProvider;
         private readonly IStorageProvider _storageProvider;
         private readonly IEnumerable<IMediaFactorySelector> _mediaFactorySelectors;
-        private readonly IMediaFolderProvider _mediaFolderProvider;
+
         private static char[] HttpUnallowed = new char[] { '<', '>', '*', '%', '&', ':', '\\', '?', '#' };
 
         public MediaLibraryService(
             IOrchardServices orchardServices,
             IMimeTypeProvider mimeTypeProvider,
             IStorageProvider storageProvider,
-            IEnumerable<IMediaFactorySelector> mediaFactorySelectors,
-            IMediaFolderProvider mediaFolderProvider) {
+            IEnumerable<IMediaFactorySelector> mediaFactorySelectors) {
             _orchardServices = orchardServices;
             _mimeTypeProvider = mimeTypeProvider;
             _storageProvider = storageProvider;
             _mediaFactorySelectors = mediaFactorySelectors;
-            _mediaFolderProvider = mediaFolderProvider;
 
             T = NullLocalizer.Instance;
         }
@@ -232,7 +229,8 @@ namespace Orchard.MediaLibrary.Services {
 
             if (_orchardServices.Authorizer.Authorize(Permissions.ManageOwnMedia)) {
                 var currentUser = _orchardServices.WorkContext.CurrentUser;
-                var userPath = _storageProvider.Combine("Users", _mediaFolderProvider.GetFolderName(currentUser));
+                var userPath = _storageProvider.Combine("Users", currentUser.UserName);
+
                 return new MediaFolder() {
                     Name = currentUser.UserName,
                     MediaPath = userPath

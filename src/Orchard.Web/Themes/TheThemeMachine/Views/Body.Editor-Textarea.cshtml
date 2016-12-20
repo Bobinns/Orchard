@@ -1,0 +1,9 @@
+﻿@using Orchard.Utility.Extensions;
+@{
+    string editorFlavor = Model.EditorFlavor;
+}
+<div class="form-group">
+    @(Model.Required != null && Model.Required
+    ? Html.TextArea("Text", (string)Model.Text, 15, 80, new { @class = "form-control tarea", required = "required" })
+    : Html.TextArea("Text", (string)Model.Text, 15, 80, new { @class = "form-control tarea" }))
+</div>

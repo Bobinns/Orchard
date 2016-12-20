@@ -91,13 +91,19 @@ namespace Orchard.Localization.Drivers {
         private IEnumerable<LocalizationPart> GetDisplayLocalizations(LocalizationPart part, VersionOptions versionOptions) {
             return _localizationService.GetLocalizations(part.ContentItem, versionOptions)
                 .Where(c => c.Culture != null)
-                .ToList();
+                .Select(c => {
+                    var localized = c.ContentItem.As<LocalizationPart>();
+                    return c;
+                }).ToList();
         }
 
         private IEnumerable<LocalizationPart> GetEditorLocalizations(LocalizationPart part) {
             return _localizationService.GetLocalizations(part.ContentItem, VersionOptions.Latest)
                 .Where(c => c.Culture != null)
-                .ToList();
+                .Select(c => {
+                    var localized = c.ContentItem.As<LocalizationPart>();
+                    return c;
+                }).ToList();
         }
 
         protected override void Importing(LocalizationPart part, ImportContentContext context) {

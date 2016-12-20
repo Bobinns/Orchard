@@ -1,0 +1,10 @@
+﻿Name: Derm.ImageSliderGallery
+AntiForgery: enabled
+Author: Derm
+Website: http://orchardproject.net
+Version: 1.0
+OrchardVersion: 1.0
+Description: Image Slider carosuel Gallery
+Features:
+    Derm.ImageSliderGallery:
+        Description: Image Slider carosuel Gallery.
